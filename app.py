@@ -292,6 +292,10 @@ for col in df.columns:
 
     elif choice == "Replace with mean":
         mean_val = df[col].mean()
+
+        # Convert column to float before replacing
+        df[col] = df[col].astype(float)
+
         df.loc[((df[col] < lower) | (df[col] > upper)), col] = mean_val
         st.info(f"Outliers replaced with mean ({mean_val}) in {col}")
         profile_log.append(f"Outliers replaced with mean in {col}")
